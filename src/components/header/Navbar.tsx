@@ -1,7 +1,7 @@
 "use client";
 import { Pages, Routes } from "@/app/constants/enums";
 import Link from "../link";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { Menu, XIcon } from "lucide-react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
@@ -63,11 +63,20 @@ const Navbar = () => {
             <Link
               onClick={() => setOpenMenu(false)}
               href={`/${locale}/${link.href}`}
-              className={`hover:text-primary duration-200 transition-colors font-semibold ${
-                pathname.startsWith(`/${locale}/${link.href}`)
-                  ? "text-primary"
-                  : "text-accent"
-              }`}
+              className={`
+                ${
+                  pathname.startsWith(`/${locale}/${link.href}`)
+                    ? "text-primary"
+                    : "text-accent"
+                }
+              ${
+                link.title === "login"
+                  ? `${buttonVariants({
+                      size: "lg",
+                    })} text-white !px-8 !rounded-lg`
+                  : "hover:text-primary duration-200 transition-colors"
+              }    font-semibold  
+              `}
             >
               {link.title}
             </Link>
