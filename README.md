@@ -52,8 +52,20 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
     npx prisma init
 ```
 
-5. migrate Prisma
+6. migrate Prisma
 
 ```bash
     npx prisma migrate dev
+```
+
+7. generate Prisma
+
+```bash
+    npx prisma generate dev
+```
+
+8. generate Prisma
+
+```bash
+    npx prisma studio
 ```
