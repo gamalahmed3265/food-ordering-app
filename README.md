@@ -31,11 +31,29 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 2. install shadcn
 
 ```bash
-npx shadcn@latest init
+    npx shadcn@latest init
 ```
 
 3. install shadcn
 
 ```bash
- npx shadcn@latest add radio-group label checkbox button
+    npx shadcn@latest add radio-group label checkbox button
+```
+
+4. install Prisma
+
+```bash
+    npm i --dev prisma @prisma/client
+```
+
+5. Init Prisma
+
+```bash
+    npx prisma init
+```
+
+5. migrate Prisma
+
+```bash
+    npx prisma migrate dev
 ```
