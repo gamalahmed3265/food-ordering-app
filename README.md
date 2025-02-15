@@ -33,3 +33,9 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 ```bash
 npx shadcn@latest init
 ```
+
+3. install shadcn
+
+```bash
+ npx shadcn@latest add radio-group label checkbox button
+```

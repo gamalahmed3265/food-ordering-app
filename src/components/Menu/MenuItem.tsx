@@ -1,7 +1,7 @@
 import { ProductWithRelations } from "@/types/product";
 import Image from "next/image";
-import { Button } from "../ui/button";
 import { formatCurrency } from "@/lib/formatters";
+import AddtoCart from "./AddtoCart";
 
 const MenuItem = ({ item }: { item: ProductWithRelations }) => {
   return (
@@ -16,7 +16,7 @@ const MenuItem = ({ item }: { item: ProductWithRelations }) => {
         </strong>
       </div>
       <p className="text-gray-500 text-sm line-clamp-3">{item.description}</p>
-      <Button className="!rounded-full mt-4">Add To Button</Button>
+      <AddtoCart item={item} />
     </li>
   );
 };

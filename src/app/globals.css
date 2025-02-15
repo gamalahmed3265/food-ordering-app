@@ -94,3 +94,17 @@ html[lang="en"] div[role="dialog"] button {
 ::selection {
   @apply bg-primary text-white;
 }
+/* Target the entire scrollbar */
+::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
+}
+
+/* Target the background of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the track */
+}
+
+/* Target the thumb (the draggable part) of the scrollbar */
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded transition-all hover:bg-red-400 hover:opacity-5 /* Background color of the thumb */;
+}
