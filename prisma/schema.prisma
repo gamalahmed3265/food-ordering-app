@@ -83,9 +83,9 @@ model Product {
   updatedAt   DateTime       @updatedAt
   sizes       Size[]
   extras      Extra[]
-  orders      OrderProduct[]
-  category    Category       @relation(fields: [categoryId], references: [id])
-  categoryId  String
+  // orders      OrderProduct[]
+  // category    Category       @relation(fields: [categoryId], references: [id])
+  // categoryId  String
 }
 
 model Size {
@@ -108,7 +108,7 @@ model Category {
   id       String    @id @default(uuid())
   name     String
   order Int @unique @default(autoincrement())
-  products Product[]
+  // products Product[]
 }
 
 model Order {
@@ -136,8 +136,8 @@ model OrderProduct {
   orderId   String
   user      User?   @relation(fields: [userId], references: [id])
   userId    String?
-  product   Product @relation(fields: [productId], references: [id])
-  productId String
+  // product   Product @relation(fields: [productId], references: [id])
+  // productId String
 }
 
 enum ProductSizes {

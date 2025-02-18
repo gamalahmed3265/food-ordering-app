@@ -11,49 +11,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ProductWithRelations } from "@/types/product";
 import Image from "next/image";
 import { Label } from "../ui/label";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Checkbox } from "../ui/checkbox";
-import { SizeProduct } from "@/types/size";
 import { formatCurrency } from "@/lib/formatters";
-import { ExtraProduct } from "@/types/Extra";
-
-const sizesData: SizeProduct[] = [
-  {
-    id: crypto.randomUUID(),
-    name: "Small",
-    price: 0,
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "Medium",
-    price: 4,
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "Large",
-    price: 8,
-  },
-];
-const extraData: ExtraProduct[] = [
-  {
-    id: crypto.randomUUID(),
-    name: "Chesse",
-    price: 0,
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "Onion",
-    price: 4,
-  },
-  {
-    id: crypto.randomUUID(),
-    name: "Tomato",
-    price: 8,
-  },
-];
+import { ProductWithRelations } from "@/types/products";
 
 const AddtoCart = ({ item }: { item: ProductWithRelations }) => {
   return (
@@ -78,11 +41,11 @@ const AddtoCart = ({ item }: { item: ProductWithRelations }) => {
         <div className="space-y-10">
           <div className="space-y-4 text-center">
             <Label htmlFor="pick-size">Pick your size</Label>
-            <PickSize sizes={sizesData} basePrice={item.basePrice} />
+            <PickSize sizes={item.sizes} basePrice={item.basePrice} />
           </div>
           <div className="space-y-4 text-center">
             <Label htmlFor="add-extras">Any extras?</Label>
-            <Extras extras={extraData} basePrice={item.basePrice} />
+            <Extras extras={item.extras} basePrice={item.basePrice} />
           </div>
         </div>
         <DialogFooter>
@@ -95,13 +58,7 @@ const AddtoCart = ({ item }: { item: ProductWithRelations }) => {
   );
 };
 
-function PickSize({
-  sizes,
-  basePrice,
-}: {
-  sizes: SizeProduct[];
-  basePrice: number;
-}) {
+function PickSize({ sizes, basePrice }: { sizes: Size[]; basePrice: number }) {
   return (
     <RadioGroup>
       {sizes.map((s) => (
@@ -119,13 +76,7 @@ function PickSize({
   );
 }
 
-function Extras({
-  extras,
-  basePrice,
-}: {
-  extras: ExtraProduct[];
-  basePrice: number;
-}) {
+function Extras({ extras, basePrice }: { extras: Extra[]; basePrice: number }) {
   return (
     <div className="">
       {extras.map((e) => (

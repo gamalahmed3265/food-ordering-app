@@ -1,6 +1,6 @@
-import { ProductWithRelations } from "@/types/product";
 import React from "react";
 import MenuItem from "./MenuItem";
+import { ProductWithRelations } from "@/types/products";
 
 const Menu = ({ items }: { items: ProductWithRelations[] }) => {
   return (

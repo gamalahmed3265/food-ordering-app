@@ -1,7 +1,7 @@
-import { ProductWithRelations } from "@/types/product";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/formatters";
 import AddtoCart from "./AddtoCart";
+import { ProductWithRelations } from "@/types/products";
 
 const MenuItem = ({ item }: { item: ProductWithRelations }) => {
   return (

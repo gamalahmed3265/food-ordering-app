@@ -3,14 +3,17 @@ import BestSellers from "./_components/BestSellers";
 import Hero from "./_components/Hero";
 
 export default async function Home() {
-  const products = await db.product.findMany();
-
-  console.log(products);
+  const products = await db.product.findMany({
+    include: {
+      sizes: true,
+      extras: true,
+    },
+  });
 
   return (
     <main>
       <Hero />
-      <BestSellers />
+      <BestSellers items={products} />
     </main>
   );
 }
