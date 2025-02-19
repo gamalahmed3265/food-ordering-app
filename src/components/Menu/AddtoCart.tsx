@@ -17,6 +17,7 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Checkbox } from "../ui/checkbox";
 import { formatCurrency } from "@/lib/formatters";
 import { ProductWithRelations } from "@/types/products";
+import { Extra, Size } from "@prisma/client";
 
 const AddtoCart = ({ item }: { item: ProductWithRelations }) => {
   return (
@@ -59,6 +60,8 @@ const AddtoCart = ({ item }: { item: ProductWithRelations }) => {
 };
 
 function PickSize({ sizes, basePrice }: { sizes: Size[]; basePrice: number }) {
+  console.log("sizes ", sizes);
+
   return (
     <RadioGroup>
       {sizes.map((s) => (
