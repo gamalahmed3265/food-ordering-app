@@ -9,7 +9,15 @@ const BestSellers = ({ items }: { items: ProductWithRelations[] }) => {
         <div className="text-center mb-4">
           <MainHeading title="Our Best Sellers" subTitle="checkOut" />
         </div>
-        <Menu items={items} />
+        {items.length > 0 ? (
+          <Menu items={items} />
+        ) : (
+          <div className="flex justify-center items-center my-16">
+            <h2 className="uppercase  italic text-center animate-ping duration-1000 delay-1000">
+              not items
+            </h2>
+          </div>
+        )}
       </div>
     </section>
   );

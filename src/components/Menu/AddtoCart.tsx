@@ -60,8 +60,6 @@ const AddtoCart = ({ item }: { item: ProductWithRelations }) => {
 };
 
 function PickSize({ sizes, basePrice }: { sizes: Size[]; basePrice: number }) {
-  console.log("sizes ", sizes);
-
   return (
     <RadioGroup>
       {sizes.map((s) => (
