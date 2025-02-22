@@ -5,6 +5,7 @@ import { Button, buttonVariants } from "../ui/button";
 import { Menu, XIcon } from "lucide-react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import CartButton from "./cart-button";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -82,6 +83,7 @@ const Navbar = () => {
             </Link>
           </li>
         ))}
+        <CartButton />
       </ul>
     </nav>
   );
