@@ -20,11 +20,18 @@ import { ProductWithRelations } from "@/types/products";
 import { Extra, ProductSizes, Size } from "@prisma/client";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addCartItem, selectCartItems } from "@/redux/features/cart/cartSlice";
+import {
+  addCartItem,
+  removeCartItem,
+  removeItemFromCart,
+  selectCartItems,
+} from "@/redux/features/cart/cartSlice";
+import { getItemQuantity } from "@/lib/cart";
 
 const AddtoCart = ({ item }: { item: ProductWithRelations }) => {
   const cart = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
+  const quantity = getItemQuantity(item.id, cart);
   // اللى جاي من السله او صمول
   const defaultSize =
     cart.find((elemnt) => elemnt.id === item.id)?.size ||
@@ -97,13 +104,22 @@ const AddtoCart = ({ item }: { item: ProductWithRelations }) => {
           </div>
         </div>
         <DialogFooter>
-          <Button
-            type="submit"
-            className="w-full h-10"
-            onClick={handelAddToCart}
-          >
-            Add to Cart - {formatCurrency(totalPrice)}
-          </Button>
+          {quantity === 0 ? (
+            <Button
+              type="submit"
+              className="w-full h-10"
+              onClick={handelAddToCart}
+            >
+              Add to Cart - {formatCurrency(totalPrice)}
+            </Button>
+          ) : (
+            <ChooseQuantity
+              quantity={quantity}
+              item={item}
+              selectedExtras={selectedExtras}
+              selectedSize={selectedSize}
+            />
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -187,5 +203,57 @@ function Extras({
     </div>
   );
 }
+
+const ChooseQuantity = ({
+  quantity,
+  item,
+  selectedExtras,
+  selectedSize,
+}: {
+  quantity: number;
+  selectedExtras: Extra[];
+  selectedSize: Size;
+  item: ProductWithRelations;
+}) => {
+  const dispatch = useAppDispatch();
+  return (
+    <div className="flex items-center flex-col gap-2 mt-4 w-full">
+      <div className="flex items-center justify-center gap-2">
+        <Button
+          variant="outline"
+          onClick={() => dispatch(removeCartItem({ id: item.id }))}
+        >
+          -
+        </Button>
+        <div>
+          <span className="text-black">{quantity} in cart</span>
+        </div>
+        <Button
+          variant="outline"
+          onClick={() =>
+            dispatch(
+              addCartItem({
+                basePrice: item.basePrice,
+                id: item.id,
+                image: item.image,
+                name: item.name,
+                extras: selectedExtras,
+                size: selectedSize,
+              })
+            )
+          }
+        >
+          +
+        </Button>
+      </div>
+      <Button
+        size="sm"
+        onClick={() => dispatch(removeItemFromCart({ id: item.id }))}
+      >
+        Remove
+      </Button>
+    </div>
+  );
+};
 
 export default AddtoCart;

@@ -1,14 +1,17 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/lib/formatters";
-import { selectCartItems } from "@/redux/features/cart/cartSlice";
-import { useAppSelector } from "@/redux/hooks";
+import {
+  removeItemFromCart,
+  selectCartItems,
+} from "@/redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 
 function CartItems() {
   const cart = useAppSelector(selectCartItems);
-  console.log(cart);
+  const dispatch = useAppDispatch();
 
   return (
     <div>
@@ -60,7 +63,9 @@ function CartItems() {
                       {formatCurrency(item.basePrice)}
                     </strong>
                     <Button
-                      onClick={() => {}}
+                      onClick={() => {
+                        dispatch(removeItemFromCart({ id: item.id }));
+                      }}
                       variant="secondary"
                       className="border"
                     >
@@ -71,7 +76,7 @@ function CartItems() {
               </li>
             ))}
           </ul>
-          <div className="flex flex-col justify-end items-end pt-6">
+          {/* <div className="flex flex-col justify-end items-end pt-6">
             <span className="text-accent font-medium">
               Subtotal:
               <strong className="text-black">
@@ -93,7 +98,7 @@ function CartItems() {
                 {formatCurrency(subTotal + deliveryFee)}
               </strong>
             </span>
-          </div>
+          </div> */}
         </>
       ) : (
         <p className="text-accent">There are no items in your cart. Add some</p>
