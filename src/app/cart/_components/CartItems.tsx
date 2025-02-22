@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { deliveryFee, getSubTotal } from "@/lib/cart";
 import { formatCurrency } from "@/lib/formatters";
 import {
   removeItemFromCart,
@@ -8,11 +9,16 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
+import { useEffect } from "react";
 
 function CartItems() {
   const cart = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
+  const subTotal = getSubTotal(cart);
 
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+  }, [cart]);
   return (
     <div>
       {cart && cart.length > 0 ? (
@@ -76,29 +82,24 @@ function CartItems() {
               </li>
             ))}
           </ul>
-          {/* <div className="flex flex-col justify-end items-end pt-6">
+          <div className="flex flex-col justify-end items-end pt-6">
             <span className="text-accent font-medium">
               Subtotal:
-              <strong className="text-black">
-                354
-                {formatCurrency(subTotal)}
-              </strong>
+              <strong className="text-black">{formatCurrency(subTotal)}</strong>
             </span>
             <span className="text-accent font-medium">
               Delivery:
               <strong className="text-black">
-                35
                 {formatCurrency(deliveryFee)}
               </strong>
             </span>
             <span className="text-accent font-medium">
               Total:
               <strong className="text-black">
-                345
                 {formatCurrency(subTotal + deliveryFee)}
               </strong>
             </span>
-          </div> */}
+          </div>
         </>
       ) : (
         <p className="text-accent">There are no items in your cart. Add some</p>
