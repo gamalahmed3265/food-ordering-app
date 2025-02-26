@@ -1,33 +1,20 @@
-import { Routes } from "@/app/constants/enums";
+import { Routes } from "@/constants/enums";
+import { getCurrentLocale } from "@/lib/getCurrentLocale";
+import getTrans from "@/lib/translation";
 import MainHeading from "../main-heading/inde";
 
 async function About() {
+  const locale = await getCurrentLocale();
+  const { home } = await getTrans(locale);
+  const { about } = home;
   return (
     <section className="section-gap" id={Routes.ABOUT}>
       <div className="container text-center">
-        <MainHeading subTitle={"Our story"} title={"About us"} />
+        <MainHeading subTitle={about.ourStory} title={about.aboutUs} />
         <div className="text-accent max-w-md mx-auto mt-4 flex flex-col gap-4">
-          <p>
-            Welcome to our pizzeria, where we serve the finest pizzas made with
-            the freshest ingredients. Every slice is a masterpiece, crafted with
-            care to deliver the perfect balance of flavors. From classic
-            favorites to unique creations, there&apos;s something for every
-            pizza lover!
-          </p>
-          <p>
-            Welcome to our pizzeria, where we serve the finest pizzas made with
-            the freshest ingredients. Every slice is a masterpiece, crafted with
-            care to deliver the perfect balance of flavors. From classic
-            favorites to unique creations, there&apos;s something for every
-            pizza lover!
-          </p>
-          <p>
-            Welcome to our pizzeria, where we serve the finest pizzas made with
-            the freshest ingredients. Every slice is a masterpiece, crafted with
-            care to deliver the perfect balance of flavors. From classic
-            favorites to unique creations, there&apos;s something for every
-            pizza lover!
-          </p>
+          <p>{about.descriptions.one}</p>
+          <p>{about.descriptions.two}</p>
+          <p>{about.descriptions.three}</p>
         </div>
       </div>
     </section>

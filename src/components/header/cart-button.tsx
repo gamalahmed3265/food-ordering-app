@@ -5,7 +5,7 @@ import { ShoppingCartIcon } from "lucide-react";
 import { useAppSelector } from "@/redux/hooks";
 import { selectCartItems } from "@/redux/features/cart/cartSlice";
 import { getCartQuantity } from "@/lib/cart";
-import { Routes } from "@/app/constants/enums";
+import { Routes } from "@/constants/enums";
 
 const CartButton = () => {
   const cart = useAppSelector(selectCartItems);

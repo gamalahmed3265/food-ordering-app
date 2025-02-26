@@ -1,4 +1,4 @@
-import { Environments } from "@/app/constants/enums";
+import { Environments } from "@/constants/enums";
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./features/cart/cartSlice";
 

@@ -1,42 +1,37 @@
 "use client";
-import { Pages, Routes } from "@/app/constants/enums";
-import Link from "../link";
-import { Button, buttonVariants } from "../ui/button";
-import { Menu, XIcon } from "lucide-react";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import CartButton from "./cart-button";
 
-const Navbar = () => {
+import { Routes } from "@/constants/enums";
+import Link from "../link";
+import { Button } from "../ui/button";
+import { useState } from "react";
+import { Menu, XIcon } from "lucide-react";
+import { useParams, usePathname } from "next/navigation";
+import { Translations } from "@/types/translations";
+
+function Navbar({ translations }: { translations: Translations }) {
   const [openMenu, setOpenMenu] = useState(false);
+  const { locale } = useParams();
   const pathname = usePathname();
-  const locale = "en";
+
   const links = [
     {
       id: crypto.randomUUID(),
-      title: "menu",
+      title: translations.navbar.menu,
       href: Routes.MENU,
     },
     {
       id: crypto.randomUUID(),
-      title: "about",
+      title: translations.navbar.about,
       href: Routes.ABOUT,
     },
     {
       id: crypto.randomUUID(),
-      title: "contact",
+      title: translations.navbar.contact,
       href: Routes.CONTACT,
     },
-    {
-      id: crypto.randomUUID(),
-      title: "login",
-      href: `${Routes.AUTH}/${Pages.LOGIN}`,
-    },
   ];
-
   return (
     <nav className="order-last lg:order-none">
-      {" "}
       <Button
         variant="secondary"
         size="sm"
@@ -50,7 +45,6 @@ const Navbar = () => {
           openMenu ? "left-0 z-50" : "-left-full"
         } top-0 px-10 py-20 lg:p-0 bg-background lg:bg-transparent transition-all duration-200 h-full lg:h-auto flex-col lg:flex-row w-full lg:w-auto flex items-start lg:items-center gap-10`}
       >
-        {" "}
         <Button
           variant="secondary"
           size="sm"
@@ -64,29 +58,19 @@ const Navbar = () => {
             <Link
               onClick={() => setOpenMenu(false)}
               href={`/${locale}/${link.href}`}
-              className={`
-                ${
-                  pathname.startsWith(`/${locale}/${link.href}`)
-                    ? "text-primary"
-                    : "text-accent"
-                }
-              ${
-                link.title === "login"
-                  ? `${buttonVariants({
-                      size: "lg",
-                    })} text-white !px-8 !rounded-lg`
-                  : "hover:text-primary duration-200 transition-colors"
-              }    font-semibold  
-              `}
+              className={`hover:text-primary duration-200 transition-colors font-semibold ${
+                pathname.startsWith(`/${locale}/${link.href}`)
+                  ? "text-primary"
+                  : "text-accent"
+              }`}
             >
               {link.title}
             </Link>
           </li>
         ))}
-        <CartButton />
       </ul>
     </nav>
   );
-};
+}
 
 export default Navbar;

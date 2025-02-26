@@ -1,4 +1,4 @@
-import { Environments } from "@/app/constants/enums";
+import { Environments } from "@/constants/enums";
 import { PrismaClient } from "@prisma/client";
 
 // PrismaClient is attached to the `global` object in development to prevent
