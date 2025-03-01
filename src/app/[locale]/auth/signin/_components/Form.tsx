@@ -40,7 +40,7 @@ function Form({ translations }: { translations: Translations }) {
       });
       if (res?.error) {
         const validationError = JSON.parse(res?.error).validationError;
-        if (validationError) setError(validationError.fieldErrors);
+        setError(validationError);
         const responseError = JSON.parse(res?.error).responseError;
         if (responseError) {
           toast(responseError);
