@@ -30,20 +30,46 @@
     npx prisma init
 ```
 
-6. migrate Prisma
-
-```bash
-    npx prisma migrate dev
-```
-
-7. generate Prisma
+6. generate Prisma
 
 ```bash
     npx prisma generate dev
+```
+
+7. migrate Prisma
+
+```bash
+    npx prisma migrate dev
 ```
 
 8. generate Prisma
 
 ```bash
     npx prisma studio
+```
+
+9. negotiator
+
+```bash
+    npx i negotiator
+    npx i @types/negotiator
+```
+
+10. install bcrypt
+
+```bash
+    npx i bcrypt
+    npx i @types/bcrypt
+```
+
+11. install zod
+
+```bash
+    npx prisma zod
+```
+
+12. install zod
+
+```bash
+    npx shadcn@latest add toast
 ```
