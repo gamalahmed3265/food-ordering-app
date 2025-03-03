@@ -7,8 +7,18 @@ import { useState } from "react";
 import { Menu, XIcon } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { Translations } from "@/types/translations";
+import AuthButton from "./auth-buttons";
+import LanguageSwitcher from "./language-switcher";
+import CartButton from "./cart-button";
+import { Session } from "next-auth";
 
-function Navbar({ translations }: { translations: Translations }) {
+function Navbar({
+  translations,
+  initialSession,
+}: {
+  translations: Translations;
+  initialSession: Session | null;
+}) {
   const [openMenu, setOpenMenu] = useState(false);
   const { locale } = useParams();
   const pathname = usePathname();
@@ -68,6 +78,14 @@ function Navbar({ translations }: { translations: Translations }) {
             </Link>
           </li>
         ))}
+        <li className="flex lg:hidden lg:items-center gap-6 flex-col">
+          <AuthButton
+            translations={translations}
+            initialSession={initialSession}
+          />
+          <LanguageSwitcher />
+          <CartButton />
+        </li>
       </ul>
     </nav>
   );
