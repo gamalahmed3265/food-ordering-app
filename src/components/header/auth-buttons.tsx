@@ -26,7 +26,7 @@ function AuthButtons({
       {session.data?.user && (
         <div className="flex items-center gap-10">
           <Button
-            className="bg-white hover:bg-primary text-accent hover:text-white transition-all duration-700"
+            className="bg-white hover:bg-primary text-accent hover:text-white transition-all duration-700 font-semibold"
             size="lg"
             onClick={() => signOut()}
           >
@@ -38,7 +38,7 @@ function AuthButtons({
         <div className="flex items-center gap-6">
           <Button
             className={`${
-              path.includes(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`)
+              path.startsWith(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`)
                 ? "bg-primary text-white"
                 : "bg-white text-accent"
             } hover:bg-primary hover:text-white transition-all duration-700  font-semibold`}
@@ -50,7 +50,7 @@ function AuthButtons({
           </Button>
           <Button
             className={`${
-              path.includes(`/${locale}/${Routes.AUTH}/${Pages.Register}`)
+              path.startsWith(`/${locale}/${Routes.AUTH}/${Pages.Register}`)
                 ? "bg-primary text-white"
                 : "bg-white text-accent"
             } hover:bg-primary hover:text-white transition-all duration-700  font-semibold`}

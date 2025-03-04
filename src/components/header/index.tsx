@@ -22,8 +22,8 @@ async function Header() {
           🍕 {translations.logo}
         </Link>
         <Navbar translations={translations} initialSession={initialSession} />
-        <div className="flex items-center gap-6 flex-1 justify-end">
-          <div className="hidden lg:flex lg:items-center lg:gap-6 ">
+        <div className="flex items-center gap-2 flex-1 justify-end">
+          <div className="hidden lg:flex ">
             <AuthButton
               translations={translations}
               initialSession={initialSession}

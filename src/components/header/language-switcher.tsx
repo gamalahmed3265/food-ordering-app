@@ -19,14 +19,14 @@ const LanguageSwitcher = () => {
     <div className="flex">
       {locale === Languages.ARABIC ? (
         <Button
-          className="bg-white hover:bg-primary text-accent hover:text-white transition-all duration-700"
+          className="bg-white hover:bg-primary text-accent hover:text-white transition-all duration-700 font-semibold"
           onClick={() => switchLanguage(Languages.ENGLISH)}
         >
           English
         </Button>
       ) : (
         <Button
-          className="bg-white hover:bg-primary text-accent hover:text-white transition-all duration-700"
+          className="bg-white hover:bg-primary text-accent hover:text-white transition-all duration-700 font-semibold"
           onClick={() => switchLanguage(Languages.ARABIC)}
         >
           العربية
