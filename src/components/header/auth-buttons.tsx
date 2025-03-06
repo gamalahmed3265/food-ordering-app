@@ -19,7 +19,6 @@ function AuthButtons({
   const router = useRouter();
   const { locale } = useParams();
   const path = usePathname();
-  console.log(path.includes(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`));
 
   return (
     <div>

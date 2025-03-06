@@ -1,21 +1,20 @@
 "use client";
+
 import { InputTypes, Routes } from "@/constants/enums";
+import useFormFields from "@/hooks/useFormField";
 import { IFormField } from "@/types/app";
 import { Translations } from "@/types/translations";
+import { CameraIcon } from "lucide-react";
 import { Session } from "next-auth";
-import Image from "next/image";
 import FormFields from "../form-fields/form-fields";
 import { Button } from "../ui/button";
+import { useSession } from "next-auth/react";
 import { UserRole } from "@prisma/client";
 import Checkbox from "../form-fields/checkbox";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState } from "react";
+import { updateProfile } from "./_actions/profile";
 import { ValidationErrors } from "@/validations/auth";
 import Loader from "../ui/loader";
-import { CameraIcon } from "lucide-react";
-import { useSession } from "next-auth/react";
-import useFormFields from "@/hooks/useFormField";
-import { toast } from "sonner";
-import { updateProfile } from "./_actions/profile";
 
 function EditUserForm({
   translations,
@@ -24,14 +23,7 @@ function EditUserForm({
   translations: Translations;
   user: Session["user"];
 }) {
-  const session = useSession();
   const formData = new FormData();
-  Object.entries(user).forEach(([key, value]) => {
-    if (value !== null && value !== undefined && key !== "image") {
-      formData.append(key, value.toString());
-    }
-  });
-
   const initialState: {
     message?: string;
     error?: ValidationErrors;
@@ -43,73 +35,50 @@ function EditUserForm({
     status: null,
     formData,
   };
-  const [selectedImage, setSelectedImage] = useState(user.image ?? "");
-  const [isAdmin, setIsAdmin] = useState(user.role === UserRole.ADMIN);
-
-  const [state, action, pending] = useActionState(
-    updateProfile.bind(null, isAdmin),
-    initialState
-  );
+  const session = useSession();
+  const [state, action, pending] = useActionState(updateProfile, initialState);
   const { getFormFields } = useFormFields({
     slug: Routes.PROFILE,
-    translations,
+    translations: translations,
   });
-
-  useEffect(() => {
-    if (state.message && state.status && !pending) {
-      toast(state.message);
-    }
-  }, [pending, state.message, state.status]);
-
-  useEffect(() => {
-    setSelectedImage(user.image as string);
-  }, [user.image]);
+  // console.log(user);
+  // console.log(session);
+  console.log(state);
 
   return (
-    <form action={action} className="flex flex-col md:flex-row gap-10">
+    <form className="flex flex-col md:flex-row gap-10" action={action}>
       <div className="group relative w-[200px] h-[200px] overflow-hidden rounded-full mx-auto">
-        {selectedImage && (
-          <Image
-            src={selectedImage}
-            alt={user.name}
-            width={200}
-            height={200}
-            className="rounded-full object-cover"
-          />
-        )}
-
         <div
           className={`${
-            selectedImage
-              ? "group-hover:opacity-[1] opacity-0  transition-opacity duration-200"
-              : ""
-          } absolute top-0 left-0 w-full h-full bg-gray-50/40`}
+            // selectedImage
+            //   ?
+            "group-hover:opacity-[1] opacity-0  transition-opacity duration-200"
+            //   : ""
+          } absolute top-0  left-0  w-full h-full bg-gray-50/40`}
         >
-          <UploadImage setSelectedImage={setSelectedImage} />
+          <UploadImage />
         </div>
       </div>
       <div className="flex-1">
-        {getFormFields().map((field: IFormField) => {
-          const fieldValue =
-            state?.formData?.get(field.name) ?? formData.get(field.name);
-          return (
-            <div key={field.name} className="mb-3">
-              <FormFields
-                {...field}
-                defaultValue={fieldValue as string}
-                error={state?.error}
-                readOnly={field.type === InputTypes.EMAIL}
-              />
-            </div>
-          );
-        })}
-        {session.data?.user.role === UserRole.ADMIN && (
-          <div className="flex items-center gap-2 my-4">
+        {getFormFields().map((field: IFormField) => (
+          <div key={field.name} className="mb-3">
+            <FormFields
+              {...field}
+              defaultValue={user[field.name]}
+              error={state?.error}
+              readOnly={field.type === InputTypes.EMAIL}
+            />
+          </div>
+        ))}
+        {session.data?.user.role === UserRole.USER && (
+          <div className="flex items-center gap-2 my-2">
             <Checkbox
-              name="admin"
-              checked={isAdmin}
-              onClick={() => setIsAdmin(!isAdmin)}
               label="Admin"
+              name="admin"
+              checked={true}
+              onClick={() => {
+                console.log("admin");
+              }}
             />
           </div>
         )}
@@ -123,17 +92,9 @@ function EditUserForm({
 
 export default EditUserForm;
 
-const UploadImage = ({
-  setSelectedImage,
-}: {
-  setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
-}) => {
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setSelectedImage(url);
-    }
+const UploadImage = () => {
+  const uploadImage = (e) => {
+    console.log(e.target.files[0]);
   };
   return (
     <>
@@ -142,8 +103,8 @@ const UploadImage = ({
         accept="image/*"
         className="hidden"
         id="image-upload"
-        onChange={handleImageChange}
         name="image"
+        onChange={uploadImage}
       />
       <label
         htmlFor="image-upload"

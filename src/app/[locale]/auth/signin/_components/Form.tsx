@@ -46,6 +46,8 @@ function Form({ translations }: { translations: Translations }) {
           toast(responseError);
         }
       }
+      console.log(res);
+
       if (res?.ok) {
         toast(translations.messages.loginSuccessful);
         router.replace(`/${locale}/${Routes.PROFILE}`);
