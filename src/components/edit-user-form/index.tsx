@@ -52,7 +52,7 @@ function EditUserForm({
           className={`${
             // selectedImage
             //   ?
-            "group-hover:opacity-[1] opacity-0  transition-opacity duration-200"
+            "group-hover:opacity-[1] opacity-0o  transition-opacity duration-200"
             //   : ""
           } absolute top-0  left-0  w-full h-full bg-gray-50/40`}
         >

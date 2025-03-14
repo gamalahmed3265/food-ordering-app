@@ -4,6 +4,7 @@ import { Pages, Routes } from "@/constants/enums";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import getTrans from "@/lib/translation";
 import Form from "./_components/Form";
+import GoogleSignInButton from "./_components/GoogleSignInButton";
 
 async function SigninPage() {
   const locale = await getCurrentLocale();
@@ -29,6 +30,7 @@ async function SigninPage() {
                 {translations.auth.login.authPrompt.signUpLinkText}
               </Link>
             </p>
+            <GoogleSignInButton>Sign up with Google</GoogleSignInButton>
           </div>
         </div>
       </div>

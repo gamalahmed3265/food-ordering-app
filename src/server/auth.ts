@@ -7,6 +7,7 @@ import { Locale } from "@/i18n.config";
 import { User, UserRole } from "@prisma/client";
 import { JWT } from "next-auth/jwt";
 import { login } from "./_action/auth";
+import GoogleProvider from "next-auth/providers/google";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -81,6 +82,23 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === Environments.DEV,
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          emailVerified: profile.email_verified ? new Date() : null,
+        };
+      },
+      // Customize HTTP options
+      httpOptions: {
+        timeout: 10000, // Increase to 10 seconds
+      },
+    }),
     Credentials({
       name: "credentials",
       credentials: {
