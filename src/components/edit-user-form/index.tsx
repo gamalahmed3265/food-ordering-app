@@ -13,7 +13,6 @@ import { ValidationErrors } from "@/validations/auth";
 import { updateProfile } from "./_actions/profile";
 import Loader from "../ui/loader";
 import { CameraIcon } from "lucide-react";
-import { useSession } from "next-auth/react";
 import useFormFields from "@/hooks/useFormField";
 import { toast } from "sonner";
 
@@ -24,7 +23,6 @@ function EditUserForm({
   translations: Translations;
   user: Session["user"];
 }) {
-  const session = useSession();
   const formData = new FormData();
   Object.entries(user).forEach(([key, value]) => {
     if (value !== null && value !== undefined && key !== "image") {
@@ -46,7 +44,10 @@ function EditUserForm({
   const [selectedImage, setSelectedImage] = useState(user.image ?? "");
   const [isAdmin, setIsAdmin] = useState(user.role === UserRole.ADMIN);
 
-  const [state, action, pending] = useActionState(updateProfile, initialState);
+  const [state, action, pending] = useActionState(
+    updateProfile.bind(null, isAdmin),
+    initialState
+  );
   const { getFormFields } = useFormFields({
     slug: Routes.PROFILE,
     translations,
@@ -65,7 +66,6 @@ function EditUserForm({
   useEffect(() => {
     setSelectedImage(user.image as string);
   }, [user.image]);
-
   return (
     <form action={action} className="flex flex-col md:flex-row gap-10">
       <div className="group relative w-[200px] h-[200px] overflow-hidden rounded-full mx-auto">
@@ -104,7 +104,7 @@ function EditUserForm({
             </div>
           );
         })}
-        {session.data?.user.role === UserRole.ADMIN && (
+        {user.role === UserRole.ADMIN && (
           <div className="flex items-center gap-2 my-4">
             <Checkbox
               name="admin"

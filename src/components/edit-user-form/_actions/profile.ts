@@ -4,9 +4,14 @@ import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import { db } from "@/lib/prisma";
 import getTrans from "@/lib/translation";
 import { updateProfileSchema } from "@/validations/profile";
+import { UserRole } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
-export const updateProfile = async (prevState: unknown, formData: FormData) => {
+export const updateProfile = async (
+  isAdmin: boolean,
+  prevState: unknown,
+  formData: FormData
+) => {
   const locale = await getCurrentLocale();
   const translations = await getTrans(locale);
 
@@ -47,7 +52,7 @@ export const updateProfile = async (prevState: unknown, formData: FormData) => {
       data: {
         ...data,
         image: imageUrl ?? user.image,
-        // role: isAdmin ? UserRole.ADMIN : UserRole.USER,
+        role: isAdmin ? UserRole.ADMIN : UserRole.USER,
       },
     });
     revalidatePath(`/${locale}/${Routes.PROFILE}`);
