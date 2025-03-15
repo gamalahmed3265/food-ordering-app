@@ -56,9 +56,9 @@ function EditUserForm({
   useEffect(() => {
     if (state.message && state.status && !pending) {
       if (state.status === 200) {
-        toast(state.message);
+        toast.success(state.message);
       } else {
-        toast(state.message);
+        toast.error(state.message);
       }
     }
   }, [pending, state.message, state.status]);

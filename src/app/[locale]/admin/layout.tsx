@@ -4,17 +4,17 @@ import AdminTabs from "./_components/AdminTabs";
 
 const AdminLayout = async ({
   params,
-  childern,
+  children,
 }: {
   params: Promise<{ locale: Locale }>;
-  childern: React.ReactNode;
+  children: React.ReactNode;
 }) => {
   const locale = (await params).locale;
   const translations = await getTrans(locale);
   return (
     <>
       <AdminTabs translations={translations} />
-      {childern}
+      {children}
     </>
   );
 };
