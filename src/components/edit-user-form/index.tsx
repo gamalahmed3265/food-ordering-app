@@ -15,6 +15,7 @@ import Loader from "../ui/loader";
 import { CameraIcon } from "lucide-react";
 import useFormFields from "@/hooks/useFormField";
 import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 
 function EditUserForm({
   translations,
@@ -52,7 +53,7 @@ function EditUserForm({
     slug: Routes.PROFILE,
     translations,
   });
-
+  const session = useSession();
   useEffect(() => {
     if (state.message && state.status && !pending) {
       if (state.status === 200) {
@@ -104,7 +105,7 @@ function EditUserForm({
             </div>
           );
         })}
-        {user.role === UserRole.ADMIN && (
+        {session.data?.user.role === UserRole.ADMIN && (
           <div className="flex items-center gap-2 my-4">
             <Checkbox
               name="admin"
