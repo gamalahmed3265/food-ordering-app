@@ -33,7 +33,7 @@ export const login = async (
     const hashedPassword = user.password;
     const isValidPassword = await bcrypt.compare(
       result.data.password,
-      hashedPassword
+      hashedPassword ?? ""
     );
     if (!isValidPassword) {
       return {
