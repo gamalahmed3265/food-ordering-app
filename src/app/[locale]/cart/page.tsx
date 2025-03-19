@@ -7,7 +7,7 @@ import { authOptions } from "@/server/auth";
 
 async function CartPage() {
   const local = await getCurrentLocale();
-  const { user } = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
   const { cart } = await getTrans(local);
   return (
     <main>
@@ -18,7 +18,7 @@ async function CartPage() {
           </h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <CartItems />
-            <CheckoutForm user={user} />
+            {session ? <CheckoutForm user={session.user} /> : null}
           </div>
         </div>
       </section>
