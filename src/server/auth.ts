@@ -62,7 +62,7 @@ export const authOptions: NextAuthOptions = {
       }
       return {
         id: dbUser.id,
-        name: dbUser.name,
+        name: dbUser.name ?? "",
         email: dbUser.email,
         role: dbUser.role,
         image: dbUser.image,
