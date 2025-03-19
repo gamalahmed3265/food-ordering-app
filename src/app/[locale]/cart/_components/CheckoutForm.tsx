@@ -10,11 +10,12 @@ import { selectCartItems } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hooks";
 import { Session } from "next-auth";
 import { createOrder } from "../_actions/create_order";
+import { FormEvent } from "react";
 
 function CheckoutForm({ user }: { user: Session["user"] }) {
   const cart = useAppSelector(selectCartItems);
   const totalAmount = getTotalAmount(cart);
-  const handelSubmit = async (e: React.FocusEvent) => {
+  const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await createOrder(user, cart);
   };
@@ -23,7 +24,7 @@ function CheckoutForm({ user }: { user: Session["user"] }) {
     cart.length > 0 && (
       <div className="grid gap-6 bg-gray-100 rounded-md p-4">
         <h2 className="text-2xl text-black font-semibold">Checkout</h2>
-        <form onSubmit={handelSubmit}>
+        <form onSubmit={(e) => handelSubmit(e)}>
           <div className="grid gap-4">
             <div className="grid gap-1">
               <Label htmlFor="phone" className="text-accent">
