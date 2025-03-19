@@ -3,7 +3,7 @@ import TextField from "./text-field";
 import PasswordField from "./password-field";
 import { IFormField } from "@/types/app";
 import { ValidationErrors } from "@/validations/auth";
-import Checkbox from "./checkbox";
+// import Checkbox from "./checkbox";
 
 interface Props extends IFormField {
   error: ValidationErrors;
@@ -20,9 +20,9 @@ const FormFields = (props: Props) => {
       return <PasswordField {...props} />;
     }
 
-    if (type === InputTypes.CHECKBOX) {
-      return <Checkbox {...props} />;
-    }
+    // if (type === InputTypes.CHECKBOX) {
+    //   return <Checkbox checked={false} {...props} />;
+    // }
 
     return <TextField {...props} />;
   };
