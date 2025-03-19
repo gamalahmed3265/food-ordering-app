@@ -1,13 +1,6 @@
-import { Locale } from "@/i18n.config";
-import { db } from "@/lib/prisma";
 import { getOrders } from "@/server/db/orders";
 
-const OrdersPage = async ({
-  params,
-}: {
-  params: Promise<{ locale: Locale }>;
-}) => {
-  const { locale } = await params;
+const OrdersPage = async () => {
   // const orders = await db.order.findMany();
   const orders = await getOrders();
   return (
