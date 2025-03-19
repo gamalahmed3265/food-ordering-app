@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Loader from "@/components/ui/loader";
 import { Pages, Routes } from "@/constants/enums";
 import useFormFields from "@/hooks/useFormField";
-import { signUp } from "@/server/_action/auth";
+import { signup } from "@/server/_action/auth";
 import { IFormField } from "@/types/app";
 import { Translations } from "@/types/translations";
 import { ValidationErrors } from "@/validations/auth";
@@ -27,7 +27,7 @@ const initialState: {
 const Form = ({ translations }: { translations: Translations }) => {
   const { locale } = useParams();
   const route = useRouter();
-  const [state, action, pending] = useActionState(signUp, initialState);
+  const [state, action, pending] = useActionState(signup, initialState);
   const { getFormFields } = useFormFields({
     slug: Pages.Register,
     translations: translations,

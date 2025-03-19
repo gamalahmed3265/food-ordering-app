@@ -5,24 +5,29 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { getTotalAmount } from "@/lib/cart";
-// import { getTotalAmount } from '@/lib/cart';
 import { formatCurrency } from "@/lib/formatters";
 import { selectCartItems } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/hooks";
+import { Session } from "next-auth";
+import { createOrder } from "../_actions/create_order";
 
-function CheckoutForm() {
+function CheckoutForm({ user }: { user: Session["user"] }) {
   const cart = useAppSelector(selectCartItems);
   const totalAmount = getTotalAmount(cart);
+  const handelSubmit = async (e: React.FocusEvent) => {
+    e.preventDefault();
+    await createOrder(user, cart);
+  };
   return (
     cart &&
     cart.length > 0 && (
       <div className="grid gap-6 bg-gray-100 rounded-md p-4">
         <h2 className="text-2xl text-black font-semibold">Checkout</h2>
-        <form>
+        <form onSubmit={handelSubmit}>
           <div className="grid gap-4">
             <div className="grid gap-1">
               <Label htmlFor="phone" className="text-accent">
-                Phone
+                {user.phone}
               </Label>
               <Input
                 id="phone"
@@ -33,7 +38,7 @@ function CheckoutForm() {
             </div>
             <div className="grid gap-1">
               <Label htmlFor="address" className="text-accent">
-                Street address
+                {user.streetAddress}
               </Label>
               <Textarea
                 id="address"
@@ -45,7 +50,7 @@ function CheckoutForm() {
             <div className="grid grid-cols-2 gap-2">
               <div className="grid gap-1">
                 <Label htmlFor="postal-code" className="text-accent">
-                  Postal code
+                  {user.postalCode}
                 </Label>
                 <Input
                   type="text"
@@ -56,7 +61,7 @@ function CheckoutForm() {
               </div>
               <div className="grid gap-1">
                 <Label htmlFor="city" className="text-accent">
-                  City
+                  {user.city}
                 </Label>
                 <Input
                   type="text"
@@ -67,7 +72,7 @@ function CheckoutForm() {
               </div>
               <div className="grid gap-1">
                 <Label htmlFor="country" className="text-accent">
-                  Country
+                  {user.country}
                 </Label>
                 <Input
                   type="text"
