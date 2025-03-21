@@ -17,7 +17,7 @@ async function Hero() {
         <div className="md:py-12">
           <h1 className="text-4xl font-semibold">{hero.title}</h1>
           <p className="text-accent my-4">{hero.description}</p>
-          <div className="flex items-center gap-4">
+          <div className="flex gap-4 items-center">
             <Link
               href={`/${Routes.MENU}`}
               className={`${buttonVariants({
@@ -33,7 +33,7 @@ async function Hero() {
             </Link>
             <Link
               href={`/${Routes.ABOUT}`}
-              className="flex gap-2 items-center text-black hover:text-primary duration-200 transition-colors font-semibold"
+              className="flex text-black duration-200 font-semibold gap-2 hover:text-primary items-center transition-colors"
             >
               {hero.learnMore}
               <ArrowRightCircle
@@ -44,12 +44,12 @@ async function Hero() {
             </Link>
           </div>
         </div>
-        <div className="relative hidden md:block">
+        <div className="hidden md:block relative">
           <Image
-            src="/assets/imgs/pizza.png"
+            src="https://res.cloudinary.com/dmpqem6np/image/upload/v1742063324/product_images/k12n5quiaqdru5clklfh.png"
             alt="Pizza"
             fill
-            className="object-contain"
+            className="hover:animate-spin object-contain"
             loading="eager"
             priority
           />
