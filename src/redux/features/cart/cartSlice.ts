@@ -1,3 +1,4 @@
+"use client";
 import { RootState } from "@/redux/store";
 import { Extra, Size } from "@prisma/client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -14,9 +15,10 @@ export type CartItem = {
 type CartState = {
   items: CartItem[];
 };
-const initialCartItems = localStorage.getItem("cartItems");
+// const initialCartItems = window.localStorage.getItem("cartItems");
 const initialState: CartState = {
-  items: initialCartItems ? JSON.parse(initialCartItems) : [],
+  // initialCartItems ? JSON.parse(initialCartItems) :
+  items: [],
 };
 export const cartSlice = createSlice({
   name: "cart",

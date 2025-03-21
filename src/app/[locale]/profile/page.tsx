@@ -27,7 +27,7 @@ const ProfilePage = async ({
     <main>
       <section className="section-gap">
         <div className="container">
-          <h1 className="text-primary text-center font-bold text-4xl italic mb-10">
+          <h1 className="text-4xl text-center text-primary font-bold italic mb-10">
             {translations.profile.title}
           </h1>
           <EditUserForm user={session?.user} translations={translations} />

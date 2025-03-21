@@ -9,16 +9,16 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 function CartItems() {
   const cart = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
   const subTotal = getSubTotal(cart);
 
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cart));
-  }, [cart]);
+  // useEffect(() => {
+  //   window.localStorage.setItem("cartItems", JSON.stringify(cart));
+  // }, [cart]);
   return (
     <div>
       {cart && cart.length > 0 ? (
@@ -26,9 +26,9 @@ function CartItems() {
           <ul>
             {cart.map((item) => (
               <li key={item.id}>
-                <div className="flex flex-col md:flex-row gap-6 justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="relative w-24 h-24">
+                <div className="flex flex-col justify-between gap-6 md:flex-row">
+                  <div className="flex gap-2 items-center">
+                    <div className="h-24 w-24 relative">
                       <Image
                         src={item.image}
                         className="object-contain"
@@ -40,7 +40,7 @@ function CartItems() {
                       <h4 className="font-semibold md:text-lg">{item.name}</h4>
                       <div className="relative">
                         {item.size && (
-                          <span className="text-sm text-accent">
+                          <span className="text-accent text-sm">
                             Size: {item.size.name}
                           </span>
                         )}
@@ -50,7 +50,7 @@ function CartItems() {
                             <ul>
                               {item.extras.map((extra) => (
                                 <li key={extra.id}>
-                                  <span className="text-sm text-accent">
+                                  <span className="text-accent text-sm">
                                     {extra.name} {formatCurrency(extra.price)}
                                   </span>
                                 </li>
@@ -58,14 +58,14 @@ function CartItems() {
                             </ul>
                           </div>
                         )}
-                        <span className="absolute right-0 top-0 text-sm text-black">
+                        <span className="text-black text-sm absolute right-0 top-0">
                           x{item.quantity}
                         </span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex-1 flex items-center gap-4 justify-end">
-                    <strong className="text-black ">
+                  <div className="flex flex-1 justify-end gap-4 items-center">
+                    <strong className="text-black">
                       {formatCurrency(item.basePrice)}
                     </strong>
                     <Button
