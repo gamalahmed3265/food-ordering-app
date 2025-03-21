@@ -4,7 +4,6 @@ import { Pages, Routes } from "@/constants/enums";
 import { Locale } from "@/i18n.config";
 import getTrans from "@/lib/translation";
 import Form from "./_components/Form";
-// import Form from "./_components/Form";
 
 async function SignupPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;

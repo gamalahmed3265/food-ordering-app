@@ -103,8 +103,8 @@ export const signup = async (prevState: unknown, formData: FormData) => {
         email: createdUser.email,
       },
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    console.error(error);
     return {
       status: 500,
       message: translations.messages.unexpectedError,

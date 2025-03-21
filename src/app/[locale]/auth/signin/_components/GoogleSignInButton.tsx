@@ -9,19 +9,15 @@ interface GoogleSignInButtonProps {
 }
 const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({ children }) => {
   const onSubmit = async () => {
-    const res = await signIn("google", {
+    await signIn("google", {
       redirect: false,
       callbackUrl: "/",
     });
-    console.log("---------");
-    console.log(res);
-
-    console.log("---------");
   };
   return (
     <Button
       onClick={onSubmit}
-      className="w-full bg-white flex items-center gap-3"
+      className="flex bg-white w-full gap-3 items-center"
     >
       <Image
         src={"https://authjs.dev/img/providers/google.svg"}
@@ -29,7 +25,7 @@ const GoogleSignInButton: FC<GoogleSignInButtonProps> = ({ children }) => {
         height={20}
         alt=""
       />
-      <span className="font-semibold uppercase text-black">{children}</span>
+      <span className="text-black font-semibold uppercase">{children}</span>
     </Button>
   );
 };

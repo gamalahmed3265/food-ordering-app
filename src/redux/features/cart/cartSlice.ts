@@ -15,10 +15,17 @@ export type CartItem = {
 type CartState = {
   items: CartItem[];
 };
-// const initialCartItems = window.localStorage.getItem("cartItems");
+
+let initialCartItems: CartItem[] = []; // Initialize with an empty object stringified
+
+try {
+  // Retrieve cart items from localStorage, or use an empty array if null or parsing fails
+  initialCartItems = JSON.parse(window.localStorage.getItem("cartItems") || "");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+} catch (error) {}
+
 const initialState: CartState = {
-  // initialCartItems ? JSON.parse(initialCartItems) :
-  items: [],
+  items: initialCartItems ?? [],
 };
 export const cartSlice = createSlice({
   name: "cart",

@@ -9,6 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
+import { useEffect } from "react";
 // import { useEffect } from "react";
 
 function CartItems() {
@@ -16,9 +17,9 @@ function CartItems() {
   const dispatch = useAppDispatch();
   const subTotal = getSubTotal(cart);
 
-  // useEffect(() => {
-  //   window.localStorage.setItem("cartItems", JSON.stringify(cart));
-  // }, [cart]);
+  useEffect(() => {
+    window.localStorage.setItem("cartItems", JSON.stringify(cart));
+  }, [cart]);
   return (
     <div>
       {cart && cart.length > 0 ? (

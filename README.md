@@ -240,3 +240,10 @@ Let us know what you think! Feel free to contribute, report issues, or suggest n
     <p style="text-align: center; margin-top: 8px;"><strong>Order Tracking</strong></p>
   </div>
 </div>
+
+---
+
+threre error when build app
+in user edit page adn menu item
+why
+generateStaticParams
