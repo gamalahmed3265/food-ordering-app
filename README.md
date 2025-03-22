@@ -224,20 +224,76 @@ Let us know what you think! Feel free to contribute, report issues, or suggest n
 
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
   <div>
-    <img src="https://via.placeholder.com/400x300" alt="Home Page" style="width: 100%; border-radius: 8px;">
+    <img src="./sccren/ (13).png" alt="Home Page" style="width: 100%; border-radius: 8px;">
     <p style="text-align: center; margin-top: 8px;"><strong>Home Page</strong></p>
   </div>
   <div>
-    <img src="https://via.placeholder.com/400x300" alt="Order Page" style="width: 100%; border-radius: 8px;">
-    <p style="text-align: center; margin-top: 8px;"><strong>Order Page</strong></p>
+    <img src="./sccren/ (12).png" alt="Home Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Home Page</strong></p>
   </div>
   <div>
-    <img src="https://via.placeholder.com/400x300" alt="Admin Dashboard" style="width: 100%; border-radius: 8px;">
-    <p style="text-align: center; margin-top: 8px;"><strong>Admin Dashboard</strong></p>
+    <img src="./sccren/ (15).png" alt="Home Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Signin Page</strong></p>
   </div>
   <div>
-    <img src="https://via.placeholder.com/400x300" alt="Order Tracking" style="width: 100%; border-radius: 8px;">
-    <p style="text-align: center; margin-top: 8px;"><strong>Order Tracking</strong></p>
+    <img src="./sccren/ (16).png" alt="Home Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Signin Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (4).png" alt="Home Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Signup Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (3).png" alt="Home Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Signup Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (1).png" alt="Order Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Profile Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (17).png" alt="Order Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Profile Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (10).png" alt="Order Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Contact Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (11).png" alt="Order Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Contact Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (17).png" alt="Order Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Admin Dashboard Add Product</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (18).png" alt="Order Page" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Admin Dashboard Add Product</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (6).png" alt="Admin Dashboard" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Admin Dashboard Update user</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (5).png" alt="Admin Dashboard" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Admin Dashboard Update Category</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (7).png" alt="Admin Dashboard" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>About Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (8).png" alt="Admin Dashboard" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>About Page</strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (3).png" alt="Order Tracking" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Superbase </strong></p>
+  </div>
+  <div>
+    <img src="./sccren/ (9).png" alt="Order Tracking" style="width: 100%; border-radius: 8px;">
+    <p style="text-align: center; margin-top: 8px;"><strong>Cloudinary </strong></p>
   </div>
 </div>
 
