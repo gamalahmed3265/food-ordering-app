@@ -288,7 +288,7 @@ Let us know what you think! Feel free to contribute, report issues, or suggest n
     <p style="text-align: center; margin-top: 8px;"><strong>About Page</strong></p>
   </div>
   <div>
-    <img src="./sccren/ (3).png" alt="Order Tracking" style="width: 100%; border-radius: 8px;">
+    <img src="./sccren/ (2).png" alt="Order Tracking" style="width: 100%; border-radius: 8px;">
     <p style="text-align: center; margin-top: 8px;"><strong>Superbase </strong></p>
   </div>
   <div>
